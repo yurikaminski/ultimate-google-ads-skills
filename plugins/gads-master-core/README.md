@@ -1,6 +1,6 @@
 # gads-master-core
 
-Core plugin of google-ads-master (v0.1). See the repository README for install, data flow and limits.
+Core plugin of the ultimate-google-ads marketplace (v0.1). See the repository README for install, data flow and limits.
 
 - Skills: `gads-master` (router), `onboard`, `diagnose`; v0.3 scaffolds (invocation disabled): audit, weekly, monitor, pacing, forecast, creative, experiment, attribution, report.
 - Agents: `audit-measurement`, `audit-search`, `audit-structure`, `audit-automation` (read-only, return finding.v1).

@@ -3,7 +3,13 @@
   "displayName": "Google Ads Master (API)",
   "version": "0.0.1",
   "description": "Scaffold. v0.2: Google Ads API read-only access. v0.3: gated writes via the mutation gate (draft, approval, dry-run, idempotency, rollback, verification, log).",
-  "author": { "name": "Yuri Kaminski" },
+  "author": {
+    "name": "Yuri Kaminski"
+  },
   "license": "MIT",
-  "dependencies": ["gads-master-core"]
+  "dependencies": [
+    "gads-master-core"
+  ],
+  "homepage": "https://github.com/yurikaminski/ultimate-google-ads-skills",
+  "repository": "https://github.com/yurikaminski/ultimate-google-ads-skills"
 }

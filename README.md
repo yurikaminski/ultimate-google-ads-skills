@@ -1,4 +1,4 @@
-# google-ads-master
+# Ultimate Google Ads (ultimate-google-ads)
 
 An evidence-first Google Ads skill for Claude Code, shipped as a plugin marketplace with three plugins:
 
@@ -24,18 +24,18 @@ Requirements: Claude Code and Python 3.10+ (or [uv](https://docs.astral.sh/uv/),
 
 Python packages install themselves: on first use the skill asks once and runs `run.py setup`, which creates a private venv at `~/.gads-master/venv` (or `$CLAUDE_PLUGIN_DATA/venv`), outside the plugin folder so updates keep it. Nothing is installed into your system Python.
 
-From the GitHub repo (after it is published):
+From GitHub:
 
 ```
-/plugin marketplace add <owner>/google-ads-master
-/plugin install gads-master-core@google-ads-master
+/plugin marketplace add yurikaminski/ultimate-google-ads-skills
+/plugin install gads-master-core@ultimate-google-ads
 ```
 
 From a local clone:
 
 ```bash
-claude plugin marketplace add ./google-ads-master
-claude plugin install gads-master-core@google-ads-master
+claude plugin marketplace add ./ultimate-google-ads-skills
+claude plugin install gads-master-core@ultimate-google-ads
 ```
 
 Development (no install):
@@ -93,7 +93,7 @@ They cover planted-constraint fixtures for every chain link in both playbooks, s
 | Hooks, skills, commands, agents | Skills under `skills/<name>/SKILL.md`; scaffold skills set `disable-model-invocation: true`; agents are read-only (`Read, Grep, Glob, Bash`). No hooks. |
 | Security scan | No credential handling, no remote code download, no shell interpolation of external content. |
 | Behavior test | `pytest` suite; `claude plugin eval` suite: TODO before directory submission. |
-| `homepage` / `repository` fields | TODO: add after the GitHub repo is published. |
+| `homepage` / `repository` fields | Set to the GitHub repo in all three plugin.json files. |
 
 ## Credits
 
