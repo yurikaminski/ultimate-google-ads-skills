@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stats-result.v1",
+  "title": "stats-result.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "stats-result.v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+    },
+    "analysis": {
+      "type": "string"
+    },
+    "n": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "estimate": {},
+    "ci": {
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "method": {
+      "type": "string"
+    },
+    "assumptions_checked": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "validity": {
+      "enum": [
+        "valid",
+        "low_power",
+        "insufficient"
+      ]
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error"
+      ]
+    },
+    "input_hash": {
+      "type": "string"
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "details": {
+      "type": "object"
+    },
+    "warn_first": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "analysis",
+    "n",
+    "estimate",
+    "ci",
+    "method",
+    "assumptions_checked",
+    "warnings",
+    "validity",
+    "status"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "profile.v1",
+  "title": "profile.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "profile.v1"
+    },
+    "currency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "period": {
+      "enum": [
+        "week"
+      ]
+    },
+    "lag_days": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "targets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "throughput": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "throughput_stage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rates": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 1
+          }
+        },
+        "cpa": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "roas": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "unit_economics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "gross_margin": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "aov_or_acv": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "target_cac": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "payback_months_target": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "ltv": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "guardrails": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "approver": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        },
+        "max_budget_change_pct": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "min_days_between_changes": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "risk": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "alpha": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 0.5
+        },
+        "negative_p_max": {
+          "type": "number"
+        },
+        "min_periods": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "effort": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 5
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "period",
+    "targets"
+  ],
+  "additionalProperties": false
+}

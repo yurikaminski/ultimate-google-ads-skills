@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision-log.v1",
+  "title": "decision-log.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "decision-log.v1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^D-[0-9a-f]{8}$"
+    },
+    "ts": {
+      "type": "string"
+    },
+    "constraint_link": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "entity": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 200
+    },
+    "direction": {
+      "enum": [
+        "increase",
+        "decrease",
+        "add",
+        "remove",
+        "restructure",
+        "none",
+        null
+      ]
+    },
+    "hypothesis": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "draft_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stats_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+      }
+    },
+    "window": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date"
+        },
+        "end": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "expected_delta": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "realized_delta": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "approved",
+        "applied",
+        "measuring",
+        "closed",
+        "reverted"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "ts",
+    "hypothesis",
+    "status"
+  ],
+  "additionalProperties": false
+}
