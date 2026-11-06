@@ -1,0 +1,68 @@
+# Machine-readable chain for the ecommerce playbook. Read by diagnose (scripts/diagnose/brief.py).
+name: ecommerce
+business_models: [ecommerce]
+period: week
+stages:
+  - id: impressions
+    toc_link: visibility_demand_budget_rank
+    effort: 3
+    instruments: [bidding-budget, qs-breakdown, competitive-intel, automation-era]
+    operational_signals: [lost_is_budget on campaigns with ROAS above break-even, lost_is_rank, products disapproved or limited in the feed]
+    exploit:
+      - Fix feed health first: disapproved and limited products are lost impressions at zero cost (Merchant Center diagnostics).
+      - Move budget from campaigns under break-even ROAS to campaigns above it that lose impression share to budget (rope).
+      - Check PMax and Search overlap on the same queries before adding budget.
+    subordinate: [Do NOT launch new campaign types while feed errors exist, Do NOT raise tROAS and budget at the same time]
+    elevate: [Budget increase where marginal ROAS is above break-even, Catalog expansion]
+  - id: clicks
+    toc_link: click
+    effort: 2
+    instruments: [creative-lp, qs-breakdown, S03]
+    operational_signals: [Shopping CTR below own baseline on top products, Price above competitor benchmark (reported)]
+    exploit:
+      - Improve product titles in the feed (brand, product type, key attribute first) for the top impression products.
+      - Fix main images that fail policy or show poorly at thumbnail size.
+      - Add promotions or merchant listing annotations where the offer is real.
+    subordinate: [Do NOT cut prices to fix CTR without margin check (unit-economics)]
+    elevate: [Price or shipping offer changes, Product ratings program]
+  - id: sessions
+    toc_link: click
+    effort: 2
+    instruments: [measurement-signal]
+    operational_signals: [Clicks to sessions ratio below own baseline, Slow mobile landing pages]
+    exploit:
+      - Reconcile clicks vs sessions (tagging, redirects, consent) before judging anything downstream.
+      - Fix slow or broken product landing pages on top-spend products.
+    subordinate: [Do NOT judge conversion rate while click-to-session loss is unexplained]
+    elevate: [Site performance work]
+  - id: add_to_cart
+    toc_link: onsite_conversion
+    effort: 3
+    instruments: [creative-lp, experiments]
+    operational_signals: [Add-to-cart rate under own baseline on paid traffic, Out-of-stock or variant issues on landing products]
+    exploit:
+      - Exclude or deprioritize out-of-stock and low-availability products from paid traffic.
+      - Send traffic to the exact variant searched, not the category page.
+      - Exclude product groups whose S09 verdict is likely_below break-even.
+    subordinate: [Do NOT add traffic while product pages are the constraint]
+    elevate: [Product page redesign, Reviews and social proof]
+  - id: checkout
+    toc_link: onsite_conversion
+    effort: 4
+    instruments: [experiments, measurement-signal]
+    operational_signals: [Cart abandonment above own baseline, Shipping cost surprise at checkout]
+    exploit:
+      - Surface shipping cost and delivery time before checkout on paid landing pages.
+      - Remove forced account creation for paid traffic if present.
+    subordinate: [Do NOT run new promotions until checkout loss is understood]
+    elevate: [Checkout redesign, Additional payment methods]
+  - id: purchase
+    toc_link: economics
+    effort: 4
+    instruments: [unit-economics, measurement-signal]
+    operational_signals: [ROAS below break-even (1 / gross margin), Returns rate high on paid orders]
+    exploit:
+      - Bid on margin, not revenue: pass profit or margin-adjusted values where possible.
+      - Segment campaigns by margin tier so low-margin products stop absorbing spend.
+    subordinate: [Do NOT scale budget while ROAS is under break-even]
+    elevate: [Margin-based conversion values, Bundles and AOV programs]

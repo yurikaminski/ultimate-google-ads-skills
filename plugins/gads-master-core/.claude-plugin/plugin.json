@@ -1,0 +1,9 @@
+{
+  "name": "gads-master-core",
+  "displayName": "Google Ads Master (core)",
+  "version": "0.1.0",
+  "description": "Evidence-first Google Ads diagnosis: onboarding by investigation, Theory of Constraints engine, local Python statistics, per-account local memory. Read-only.",
+  "author": { "name": "Yuri Kaminski" },
+  "license": "MIT",
+  "keywords": ["google-ads", "ppc", "theory-of-constraints", "statistics", "audit", "saas", "ecommerce"]
+}

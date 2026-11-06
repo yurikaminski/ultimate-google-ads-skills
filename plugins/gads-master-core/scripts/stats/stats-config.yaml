@@ -1,0 +1,12 @@
+# Risk parameters. Values marked "to calibrate" are defaults until onboarding/profile overrides them.
+alpha: 0.10                # to calibrate: two-sided CI level = 1 - alpha
+seed: 20261106
+min_periods: 4             # to calibrate: mature periods needed for a "valid" S16 verdict
+lag_coverage: 0.90         # S04: share of conversions that defines the maturity cutoff
+s09:
+  decide_high: 0.90        # to calibrate: P(CVR >= break-even) above this = likely_above
+  decide_low: 0.10         # to calibrate: below this = likely_below
+  min_entities_for_prior: 5
+s15:
+  drift_tolerance: 0.02    # to calibrate: relative diff allowed between overlapping exports
+bootstrap_iterations: 2000

@@ -1,0 +1,72 @@
+# Machine-readable chain for the SaaS playbook. Read by diagnose (scripts/diagnose/brief.py).
+# Exploit actions are zero-new-spend moves. Expected deltas are never written here: they come from S16.
+name: saas
+business_models: [saas_plg, saas_sales_led, saas_hybrid]
+period: week
+stages:
+  - id: impressions
+    toc_link: visibility_demand_budget_rank
+    effort: 3
+    instruments: [bidding-budget, qs-breakdown, competitive-intel, seo-paid-synergy]
+    operational_signals: [lost_is_budget on terms with CPA under target, lost_is_rank on profitable terms, low search volume for the category]
+    exploit:
+      - Move budget inside the account from terms above target CPA to profitable terms losing impression share to budget (rope: at the pace the constraint absorbs).
+      - Fix rank before raising bids: ad relevance and landing page experience on the top-spend high-intent ad groups (qs-breakdown).
+      - Re-check geo, schedule and audience exclusions that silently cap eligible impressions.
+    subordinate:
+      - Do NOT pause brand or high-intent campaigns to fund new tests.
+      - Do NOT add broad match or new campaign types until high-intent coverage is full.
+    elevate: [Budget increase on terms with marginal CPA under target, New high-intent keyword clusters, Competitor campaigns (trademark policy applies)]
+  - id: clicks
+    toc_link: click
+    effort: 2
+    instruments: [creative-lp, qs-breakdown, S03]
+    operational_signals: [CTR below own baseline on top impression ad groups, RSA assets rated low]
+    exploit:
+      - Rewrite RSA headlines on the top 3 impression ad groups for message match with the searched intent (pin only what policy or brand requires).
+      - Add or repair sitelinks and callouts that answer pricing, integrations and trial questions.
+      - Split ad groups whose search terms show two intents into themed groups (not SKAGs).
+    subordinate: [Do NOT change bidding strategy while testing ads, Do NOT raise budget to buy more of a weak CTR]
+    elevate: [New landing variants per intent cluster, Video or demo assets]
+  - id: signups_or_leads
+    toc_link: onsite_conversion
+    effort: 3
+    instruments: [creative-lp, experiments]
+    operational_signals: [High bounce or low form-start rate on paid landing pages, Spend on terms with CVR under target (S09)]
+    exploit:
+      - Send each intent cluster to the page that matches it (pricing intent to pricing, competitor intent to comparison page).
+      - Remove form friction on paid traffic: fewer fields, work email validation instead of extra qualification fields.
+      - Exclude search terms whose S09 verdict is likely_below break-even (evidence-based negatives only).
+    subordinate: [Do NOT add traffic sources while on-site conversion is the constraint, Do NOT change attribution settings mid-test]
+    elevate: [Dedicated landing pages per segment, Interactive demo or self-serve trial path]
+  - id: activated_or_mql
+    toc_link: lead_quality
+    effort: 4
+    instruments: [measurement-signal, search-terms-negatives, intent-ladder]
+    operational_signals: [Share of signups never activating above own baseline, Junk lead share reported by sales]
+    exploit:
+      - Import offline conversions (activation or MQL) and switch the bidding goal from raw signups to the qualified event once volume allows (bidding-budget).
+      - Shift budget up the intent ladder: brand and high-intent first, problem-aware last.
+      - Add negatives only for search terms with evidence of non-qualified leads (job seekers, students, free-tool hunters) from the CRM join.
+    subordinate: [Do NOT optimize toward form fills while lead quality is the constraint, Do NOT broaden match types]
+    elevate: [Enhanced conversions for leads plus CRM integration, Lead scoring feedback loop]
+  - id: sql
+    toc_link: sales_capacity
+    effort: 5
+    instruments: [measurement-signal]
+    operational_signals: [Leads uncontacted beyond SLA, SQL backlog above sales capacity]
+    exploit:
+      - State it plainly: more ad spend will not raise throughput now. The fix is outside Ads (speed to lead, routing, SDR capacity).
+      - Hold Ads spend flat (rope) and protect the highest-quality campaigns only.
+    subordinate: [Do NOT increase budget, Do NOT launch new campaigns]
+    elevate: [Sales or SDR capacity, Routing and speed-to-lead automation]
+  - id: won
+    toc_link: economics
+    effort: 4
+    instruments: [unit-economics, seo-paid-synergy, experiments]
+    operational_signals: [CAC payback above target, Win rate from paid below other sources]
+    exploit:
+      - Re-rank campaigns by pipeline value per cost (offline conversion values), not by lead count.
+      - Cut spend on segments with payback above target per unit-economics.
+    subordinate: [Do NOT chase volume on low-ACV segments]
+    elevate: [Pricing or packaging change, Sales enablement for paid-sourced deals]

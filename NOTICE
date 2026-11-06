@@ -1,0 +1,14 @@
+google-ads-master
+Copyright (c) 2026 Yuri Kaminski. Licensed under MIT (see LICENSE).
+
+Prior art. Concepts were studied and reimplemented. No source text or code was copied.
+
+- AgriciDaniel/claude-ads (MIT), https://github.com/AgriciDaniel/claude-ads
+  Concepts: evidence-first audits, mutation gate, claims ledger, GAQL compatibility notes.
+- irinabuht12-oss/marketing-skills (README states MIT; no LICENSE file in repo at 2026-11-06),
+  https://github.com/irinabuht12-oss/marketing-skills
+  Concepts: task-shaped modules (QS breakdown, pacing, anomaly, forecast, search-term mining).
+  Its hosted third-party MCP is deliberately not used.
+- ivangfalco/ads-skills (MIT with Commons Clause), https://github.com/ivangfalco/ads-skills
+  Concepts: B2B intent ladder, bidding by conversion volume, weekly scorecard, offline
+  conversion reconciliation. Because of the Commons Clause, nothing from it is redistributed.

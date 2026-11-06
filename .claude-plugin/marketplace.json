@@ -1,0 +1,34 @@
+{
+  "name": "google-ads-master",
+  "owner": { "name": "Yuri Kaminski" },
+  "metadata": {
+    "description": "Evidence-first Google Ads skill: Theory of Constraints diagnosis, local statistics, per-account memory, onboarding by investigation.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "gads-master-core",
+      "source": "./plugins/gads-master-core",
+      "description": "Core: onboarding by investigation, TOC diagnose, local stats (adsstats), per-account memory. Works from CSV/exports.",
+      "version": "0.1.0",
+      "category": "marketing",
+      "tags": ["google-ads", "ppc", "theory-of-constraints", "statistics", "audit"]
+    },
+    {
+      "name": "gads-master-api",
+      "source": "./plugins/gads-master-api",
+      "description": "Optional (scaffold, v0.2-v0.3): Google Ads API read access and gated writes through the mutation gate.",
+      "version": "0.0.1",
+      "category": "marketing",
+      "dependencies": ["gads-master-core"]
+    },
+    {
+      "name": "gads-master-intel",
+      "source": "./plugins/gads-master-intel",
+      "description": "Optional (scaffold, v0.4): auction insights ingest, SERP sampler adapter, SEO x Paid.",
+      "version": "0.0.1",
+      "category": "marketing",
+      "dependencies": ["gads-master-core"]
+    }
+  ]
+}

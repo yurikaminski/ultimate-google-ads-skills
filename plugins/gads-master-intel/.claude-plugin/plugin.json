@@ -1,0 +1,9 @@
+{
+  "name": "gads-master-intel",
+  "displayName": "Google Ads Master (intel)",
+  "version": "0.0.1",
+  "description": "Scaffold. v0.4: auction insights ingest, ToS-compliant SERP sampler adapter, Search Console pull, SEO x Paid matrix.",
+  "author": { "name": "Yuri Kaminski" },
+  "license": "MIT",
+  "dependencies": ["gads-master-core"]
+}
