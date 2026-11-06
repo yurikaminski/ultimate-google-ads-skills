@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "seo-paid-row.v1",
+  "title": "seo-paid-row.v1 (scaffold v0.4)",
+  "type": "object",
+  "required": [
+    "schema",
+    "query_key",
+    "intent",
+    "verdict",
+    "evidence_level"
+  ],
+  "properties": {
+    "schema": {
+      "const": "seo-paid-row.v1"
+    },
+    "query_key": {
+      "type": "string"
+    },
+    "intent": {
+      "enum": [
+        "brand",
+        "high_intent",
+        "competitor",
+        "problem_aware",
+        "demand_gen"
+      ]
+    },
+    "paid_cost": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "paid_conversions": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "organic_position": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "competitor_presence": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "verdict": {
+      "enum": [
+        "defend",
+        "reduce_candidate_test_only",
+        "seo_investment_candidate",
+        "content_gap",
+        "coverage_test",
+        "reverse_flow",
+        "unknown"
+      ]
+    },
+    "evidence_level": {
+      "enum": [
+        "observed",
+        "reported",
+        "estimated"
+      ]
+    },
+    "stats_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

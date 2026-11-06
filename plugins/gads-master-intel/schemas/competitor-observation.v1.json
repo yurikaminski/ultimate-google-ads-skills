@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "competitor-observation.v1",
+  "title": "competitor-observation.v1 (scaffold v0.4)",
+  "type": "object",
+  "required": [
+    "schema",
+    "domain",
+    "source",
+    "captured_at",
+    "evidence_type"
+  ],
+  "properties": {
+    "schema": {
+      "const": "competitor-observation.v1"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "source": {
+      "enum": [
+        "auction_insights_export",
+        "serp_sampler",
+        "transparency_center",
+        "ad_library",
+        "keyword_planner",
+        "third_party_estimate"
+      ]
+    },
+    "keyword": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "geo": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "device": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "window": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "samples": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "presence_rate": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "avg_position": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "final_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "captured_at": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "enum": [
+        "observed",
+        "reported",
+        "estimated"
+      ]
+    },
+    "stats_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
