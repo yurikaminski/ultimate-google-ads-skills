@@ -9,7 +9,7 @@ stages:
     instruments: [bidding-budget, qs-breakdown, competitive-intel, automation-era]
     operational_signals: [lost_is_budget on campaigns with ROAS above break-even, lost_is_rank, products disapproved or limited in the feed]
     exploit:
-      - Fix feed health first: disapproved and limited products are lost impressions at zero cost (Merchant Center diagnostics).
+      - "Fix feed health first: disapproved and limited products are lost impressions at zero cost (Merchant Center diagnostics)."
       - Move budget from campaigns under break-even ROAS to campaigns above it that lose impression share to budget (rope).
       - Check PMax and Search overlap on the same queries before adding budget.
     subordinate: [Do NOT launch new campaign types while feed errors exist, Do NOT raise tROAS and budget at the same time]
@@ -62,7 +62,7 @@ stages:
     instruments: [unit-economics, measurement-signal]
     operational_signals: [ROAS below break-even (1 / gross margin), Returns rate high on paid orders]
     exploit:
-      - Bid on margin, not revenue: pass profit or margin-adjusted values where possible.
+      - "Bid on margin, not revenue: pass profit or margin-adjusted values where possible."
       - Segment campaigns by margin tier so low-margin products stop absorbing spend.
     subordinate: [Do NOT scale budget while ROAS is under break-even]
     elevate: [Margin-based conversion values, Bundles and AOV programs]
