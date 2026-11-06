@@ -10,7 +10,7 @@ State = `<workspace>/.gads-master/<account_id>/` (workspace = current project di
 
 ## 1. Capability detection (first call of every session)
 Run `CLI doctor --workspace W --account A`. It writes `capabilities.json`.
-- No Python deps: say so on line 1. There is no statistical verdict without Python. Offer install (`pip install -r "$P/requirements.txt"`).
+- `stats: unavailable`: say so on line 1 (no statistical verdict without the deps). Ask once to run the one-time setup, then run `CLI setup` (installs numpy, pandas, scipy, statsmodels, pyyaml, jsonschema from PyPI into a private venv outside the plugin; every later command uses it automatically). Exit code 4 from any command means the same thing.
 - `api: unavailable`: input is CSV/exports only. Ask for the export the module needs.
 - `intel: unavailable`: report intel instruments as unavailable. Never substitute guesses.
 

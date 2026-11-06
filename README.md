@@ -20,11 +20,9 @@ Core works alone. Without api or intel installed, those capabilities are reporte
 
 ## Install
 
-Requirements: Claude Code, Python 3.10+.
+Requirements: Claude Code and Python 3.10+ (or [uv](https://docs.astral.sh/uv/), which also provides Python).
 
-```bash
-pip install -r plugins/gads-master-core/requirements.txt
-```
+Python packages install themselves: on first use the skill asks once and runs `run.py setup`, which creates a private venv at `~/.gads-master/venv` (or `$CLAUDE_PLUGIN_DATA/venv`), outside the plugin folder so updates keep it. Nothing is installed into your system Python.
 
 From the GitHub repo (after it is published):
 
@@ -76,7 +74,9 @@ No generic negative-keyword lists. No Google SERP scraping. Never click competit
 ## Tests
 
 ```bash
-cd plugins/gads-master-core/tests && python -m pytest -q
+python3 plugins/gads-master-core/scripts/run.py setup
+~/.gads-master/venv/bin/python -m pip install pytest
+cd plugins/gads-master-core/tests && ~/.gads-master/venv/bin/python -m pytest -q
 ```
 
 They cover planted-constraint fixtures for every chain link in both playbooks, statistical calibration by simulation (CI coverage, type-I error, power), contract tests (schemas, evidence types, stats id citations, the warn-first line, no write without an approved draft), and onboarding from saved HTML fixtures with no live network.

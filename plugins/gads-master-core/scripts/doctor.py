@@ -52,6 +52,7 @@ def run(ws: str, acct: str) -> dict:
         "python": {"version": sys.version.split()[0], "ok": py_ok},
         "stats": "available" if stats_ok else "unavailable",
         "deps": deps, "optional_deps": opt,
+        "interpreter": sys.executable,
         "api": ("available" if api.get("status") == "implemented" and any(creds.values())
                 else "scaffold_only" if api.get("installed") else "unavailable"),
         "api_plugin": api, "credentials_present": creds,
@@ -62,8 +63,8 @@ def run(ws: str, acct: str) -> dict:
         "notes": [],
     }
     if not stats_ok:
-        caps["notes"].append("No statistical verdict possible: install deps with "
-                             f"pip install -r \"{CORE / 'requirements.txt'}\"")
+        caps["notes"].append("No statistical verdict possible until the one-time setup runs: "
+                             f"python3 \"{CORE / 'scripts' / 'run.py'}\" setup")
     if caps["api"] != "available":
         caps["notes"].append("Input is CSV/export only. Google Ads MCP tools, if present in this session, "
                              "may be used read-only to pull the same reports.")

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Single entry point: python3 "${CLAUDE_PLUGIN_ROOT}/scripts/run.py" <command> ...
 
-Commands: doctor | stats | context | profile | ledger | onboard | diagnose
-Output is JSON on stdout. Exit codes: 0 ok, 2 usage/validation error, 3 not implemented.
+Commands: setup | doctor | stats | context | profile | ledger | onboard | diagnose
+Output is JSON on stdout. Exit codes: 0 ok, 2 usage/validation error, 3 not implemented,
+4 Python deps missing (run `setup` once).
 """
 from __future__ import annotations
 
@@ -30,6 +31,12 @@ def main(argv=None) -> int:
         print(__doc__)
         return 0
     cmd, rest = argv[0], argv[1:]
+    import bootstrap
+    if cmd == "setup":
+        _out(bootstrap.setup())
+        return 0
+    if cmd != "doctor" or bootstrap.venv_python().exists():  # doctor without a venv reports deps instead
+        bootstrap.ensure(argv)
     if cmd == "stats":
         from adsstats.__main__ import main as stats_main
         return stats_main(rest)
