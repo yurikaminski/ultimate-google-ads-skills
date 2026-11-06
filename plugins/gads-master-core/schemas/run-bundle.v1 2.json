@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run-bundle.v1",
+  "title": "run-bundle.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "run-bundle.v1"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "inputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stats_results": {
+      "type": "array",
+      "items": {
+        "$ref": "stats-result.v1.json"
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "finding.v1.json"
+      }
+    },
+    "output": {
+      "type": "object"
+    },
+    "capabilities": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema",
+    "run_id",
+    "account_id",
+    "mode",
+    "created_at",
+    "inputs",
+    "stats_results",
+    "findings",
+    "output"
+  ],
+  "additionalProperties": false
+}

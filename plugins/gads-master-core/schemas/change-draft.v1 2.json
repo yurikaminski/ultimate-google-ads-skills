@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "change-draft.v1",
+  "title": "change-draft.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "change-draft.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "constraint_link": {
+      "type": "string"
+    },
+    "hypothesis": {
+      "type": "string"
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "resource",
+          "op",
+          "payload"
+        ],
+        "properties": {
+          "resource": {
+            "type": "string"
+          },
+          "op": {
+            "enum": [
+              "create",
+              "update",
+              "remove"
+            ]
+          },
+          "payload": {
+            "type": "object"
+          },
+          "before": {
+            "type": [
+              "object",
+              "null"
+            ]
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "new_campaign_status": {
+      "const": "PAUSED"
+    },
+    "warn_first": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "stats_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+      }
+    },
+    "expected_delta": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "window_days": {
+      "type": "number"
+    },
+    "rollback": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 16
+    },
+    "approval": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "approved_by": {
+          "type": "string"
+        },
+        "approved_at": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "approved",
+        "dry_run_ok",
+        "applied",
+        "verified",
+        "rolled_back",
+        "rejected"
+      ]
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "account_id",
+    "created_at",
+    "constraint_link",
+    "hypothesis",
+    "operations",
+    "warn_first",
+    "stats_ids",
+    "window_days",
+    "rollback",
+    "idempotency_key",
+    "approval",
+    "status"
+  ],
+  "additionalProperties": false
+}

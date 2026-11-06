@@ -1,77 +1,119 @@
-# Ultimate Google Ads (ultimate-google-ads)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <img alt="Ultimate Google Ads: find the one bottleneck in your account" src="assets/banner-light.svg" width="100%">
+</picture>
 
-An evidence-first Google Ads skill for Claude Code, shipped as a plugin marketplace with three plugins:
+<p align="center">
+  <a href="https://github.com/yurikaminski/ultimate-google-ads-skills/stargazers"><img src="https://img.shields.io/github/stars/yurikaminski/ultimate-google-ads-skills?style=flat&color=E8540C&label=stars" alt="GitHub stars"></a>
+  <img src="https://img.shields.io/badge/Claude%20Code-plugin-14213D" alt="Claude Code plugin">
+  <img src="https://img.shields.io/badge/python-3.10%2B-14213D" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/tests-58%20passing-2E7D32" alt="58 tests passing">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-6B7280" alt="MIT license"></a>
+  <a href="https://www.linkedin.com/in/yuri-kaminski/"><img src="https://img.shields.io/badge/LinkedIn-Yuri%20Kaminski-0A66C2?logo=linkedin&logoColor=white" alt="Yuri Kaminski on LinkedIn"></a>
+</p>
 
-| Plugin | Status | What it does |
+<h3 align="center">10+ Claude skills analyzed + 15 years running ads for 100+ companies =<br>the Google Ads skill I wanted and couldn't find.</h3>
+
+<p align="center">
+  <b>If it saves you one bad optimization, <a href="https://github.com/yurikaminski/ultimate-google-ads-skills/stargazers">star the repo ⭐</a></b>. It's how other marketers find it.
+</p>
+
+---
+
+## The problem with Google Ads "audits"
+
+Most AI skills for Google Ads do the same thing: pull 40 metrics, compare each one to a generic benchmark ("CTR below 2%!"), and hand you 25 recommendations.
+
+Then you touch everything, nothing moves, and you can't tell which change did what.
+
+An account has **one bottleneck at a time**. Optimizing anything else is busywork with a nicer dashboard. This skill finds that bottleneck first, proves it with statistics, and tells you what **not** to touch while you fix it.
+
+## What it does that the others don't
+
+| | Typical AI audit | Ultimate Google Ads |
 |---|---|---|
-| `gads-master-core` | v0.1, working | Onboarding by investigation, Theory of Constraints diagnosis, local statistics (`adsstats`), per-account memory. Read-only. Input: CSV/exports. |
-| `gads-master-api` | scaffold (v0.2 to v0.3) | Google Ads API read access, then writes gated by the mutation gate. |
-| `gads-master-intel` | scaffold (v0.4) | Auction insights ingest, SERP sampler adapter, Search Console, SEO x Paid. |
+| **Output** | 25 recommendations | **1 constraint**, max 3 actions, everything else in a parking lot |
+| **Thresholds** | "QS < 7 is bad" for everyone | Compared to **your own account's baseline** |
+| **Math** | The LLM eyeballs numbers | **Local Python stats** (confidence intervals, Bayesian shrinkage, lag maturity). Every number cites a result id |
+| **Low data** | Confident verdict anyway | **First line warns you**, findings marked indicative, confidence capped |
+| **Context** | 30-question form | **Reads your site and competitors first**, asks only what it can't deduce (max 7) |
+| **Memory** | Starts from zero every time | Remembers decisions, freezes changes inside measurement windows, flags flip-flops |
+| **Your data** | Often a hosted third-party connector | **Stays on your machine**. No hosted MCP, credentials never stored |
 
-Core works alone. Without api or intel installed, those capabilities are reported as unavailable and core falls back to CSV/exports.
+## How it works
 
-## What makes it different
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/how-it-works-dark.svg">
+  <img alt="Onboard, Diagnose, Exploit, Measure, repeat" src="assets/how-it-works-light.svg" width="100%">
+</picture>
 
-- **One constraint at a time.** "Optimize my account" runs a queue/starvation test (S16) over your funnel and returns a Constraint Brief: one constraint with evidence and confidence, a runner-up, what would falsify it, max 3 zero-spend actions, what NOT to touch now, and a parking lot.
-- **Statistics run locally, warn first.** Every number comes from a local Python stats result with an id. When data is thin, the first line says so; the analysis still runs, marked indicative, confidence capped at low.
-- **No universal thresholds.** "QS < 7" or "CTR < 1.5%" never fails anything alone. Heuristics are labeled and compared to the account's own baseline.
-- **Onboarding by investigation.** It reads your site and competitors first, drafts the business context with provenance on every field, and asks only what it could not deduce (max 7 questions).
-- **Memory per account.** Decisions, measurement windows, constraint history and baselines live in your workspace. Changes inside an open measurement window are frozen; flip-flops are flagged.
+It's [Theory of Constraints](https://en.wikipedia.org/wiki/Theory_of_constraints) applied to your funnel. For each stage (impressions, clicks, leads, MQL, SQL, won, or the ecommerce equivalent) it computes the volume you **need** to hit your target and checks, with confidence intervals, whether you're starving or queueing. The first starving stage is your constraint. An operational signal (lost impression share, uncontacted leads, spend on terms below break-even) raises confidence.
 
-## Install
+## What you get
 
-Requirements: Claude Code and Python 3.10+ (or [uv](https://docs.astral.sh/uv/), which also provides Python).
+<img alt="Sample Constraint Brief output" src="assets/constraint-brief.svg" width="100%">
 
-Python packages install themselves: on first use the skill asks once and runs `run.py setup`, which creates a private venv at `~/.gads-master/venv` (or `$CLAUDE_PLUGIN_DATA/venv`), outside the plugin folder so updates keep it. Nothing is installed into your system Python.
+A **Constraint Brief**: the constraint with its evidence, a runner-up, what would prove it wrong, up to 3 zero-spend actions with expected impact and rollback, the "do NOT do now" list, and a dated next review. Sample above is from a synthetic test account.
 
-From GitHub:
+## Quickstart (2 minutes)
+
+**1. Add the marketplace and install** (inside Claude Code):
 
 ```
 /plugin marketplace add yurikaminski/ultimate-google-ads-skills
 /plugin install gads-master-core@ultimate-google-ads
 ```
 
-From a local clone:
+**2. Ask:**
 
-```bash
-claude plugin marketplace add ./ultimate-google-ads-skills
-claude plugin install gads-master-core@ultimate-google-ads
+```
+Optimize my Google Ads account
 ```
 
-Development (no install):
+**3. Answer what it asks.** It starts with your site and 2-3 competitors, investigates, shows you what it understood, then asks for the few numbers it can't find (your target, margin, sales cycle). On first run it asks once to install its Python packages into a private environment (`~/.gads-master/venv`). Nothing touches your system Python.
 
-```bash
-claude --plugin-dir ./plugins/gads-master-core
-```
+Data input in v0.1 is CSV exports from Google Ads, GA4 or your CRM. The skill tells you exactly which columns it needs.
 
-Then ask: "optimize my Google Ads account". The `gads-master` skill runs `doctor`, then `onboard` (if there is no context), then `diagnose`. Explicit entry points: `/gads-master-core:onboard`, `/gads-master-core:diagnose`.
+## What's inside
 
-## Data flow (what stays local)
+| Plugin | Status | What it does |
+|---|---|---|
+| `gads-master-core` | ✅ **v0.1** | Onboarding by investigation, TOC diagnosis, local stats engine, per-account memory, 4 audit subagents |
+| `gads-master-api` | 🛠 v0.2 / v0.3 | Google Ads API read access, then writes behind a mutation gate (approval, dry run, rollback, new campaigns always PAUSED) |
+| `gads-master-intel` | 🛠 v0.4 | Auction insights, compliant SERP sampling, Search Console, SEO x Paid matrix |
+
+Playbooks: **SaaS** and **Ecommerce** are complete. App, marketplace, lead gen and local are next.
+
+## Roadmap
+
+- [x] **v0.1**: onboard, diagnose, stats S01 S04 S09 S15 S16, memory, SaaS and ecommerce playbooks
+- [ ] **v0.2**: Google Ads API, read only
+- [ ] **v0.3**: gated writes, weekly ritual, pacing, forecast, experiments, creative, attribution, report, remaining stats
+- [ ] **v0.4**: competitive intel and SEO x Paid cross-learnings
+
+Want a module sooner? [Open an issue](https://github.com/yurikaminski/ultimate-google-ads-skills/issues) and tell me what you'd use it for. Stars decide the order. ⭐
+
+## Rules it never breaks
+
+- No generic negative-keyword lists. Every negative needs evidence from your own search terms.
+- No scraping Google search results. No clicking competitor ads.
+- No invented "account health score".
+- Read-only by default. Pages, ads and competitor copy are treated as untrusted data: instructions inside them are ignored.
+
+## Privacy: what stays local
 
 | Data | Where it goes |
 |---|---|
-| Your CSV exports, funnel data, stats | Read and computed locally by Python. The stats package has no network code. |
-| Business context, profile, decision log, baselines | `<workspace>/.gads-master/<account_id>/`, plain files, deletable. Outside the plugin folder, so updates never overwrite them. |
-| Public web pages (onboarding) | Fetched from the sites you name, robots.txt respected. Only structured signals and URLs are kept, never page text. Google SERPs are never fetched. |
-| Credentials | Never stored. `doctor` only checks whether they are present. |
-| Third-party hosted MCP servers | None by default. |
+| Exports, funnel data, statistics | Computed locally in Python. The stats package has no network code |
+| Business context, decisions, baselines | `<workspace>/.gads-master/<account_id>/`, plain files you can read and delete |
+| Public web pages (onboarding) | Only sites you name, robots.txt respected, only structured signals kept |
+| Credentials | Never stored |
 
-Everything Claude reads from pages, ads, search terms or competitor copy is treated as untrusted data. Instructions inside it are ignored, and raw external text is never written into state files.
+## Under the hood
 
-## Limits (v0.1)
-
-- Input is CSV/exports. API access arrives in v0.2.
-- No writes to Google Ads. Changes are drafts that you apply; the gate precondition is in place for v0.3.
-- Implemented stats: S01 (CIs), S04 (conversion lag), S09 (empirical-Bayes shrinkage), S15 (data quality), S16 (constraint finder). S02, S03, S05 to S08 and S10 to S14 are planned for v0.3.
-- Full playbooks: SaaS and ecommerce. App, marketplace, lead gen and local are scaffolds (diagnose returns `unknown`).
-- On-demand modules (audit, weekly, monitor, pacing, forecast, creative, experiment, attribution, report) are invocation-disabled scaffolds.
-- Heuristics in `references/heuristics-registry.json` are practitioner-sourced and labeled; dated platform facts live in `references/claims-ledger.md` with verification status.
-
-## Hard stops
-
-No generic negative-keyword lists. No Google SERP scraping. Never click competitor ads. No invented health score. Trademark policy respected in competitor conquesting. New campaigns (v0.3) are created PAUSED.
-
-## Tests
+- Statistics: Wilson and exact Poisson intervals, bootstrap ratios, conversion-lag maturity and nowcasting, empirical-Bayes beta-binomial shrinkage (replaces "50 clicks and no conversion, pause it"), data-quality checks, and the queue/starvation constraint test.
+- 58 tests, including a planted-constraint suite: synthetic accounts with a known bottleneck in every funnel stage. The engine found the planted constraint in 360 of 360 runs.
+- Platform facts that change (API auth, product sunsets) live in a dated claims ledger with sources and verification status.
 
 ```bash
 python3 plugins/gads-master-core/scripts/run.py setup
@@ -79,26 +121,20 @@ python3 plugins/gads-master-core/scripts/run.py setup
 cd plugins/gads-master-core/tests && ~/.gads-master/venv/bin/python -m pytest -q
 ```
 
-They cover planted-constraint fixtures for every chain link in both playbooks, statistical calibration by simulation (CI coverage, type-I error, power), contract tests (schemas, evidence types, stats id citations, the warn-first line, no write without an approved draft), and onboarding from saved HTML fixtures with no live network.
+## About the author
 
-## Pre-submission checklist mapping
+<img src="assets/yuri.jpg" alt="Yuri Kaminski" width="96" align="left" style="margin-right:16px">
 
-| Checklist area | Status |
-|---|---|
-| Repository and folder layout | `.claude-plugin/marketplace.json` at root; each plugin has `.claude-plugin/plugin.json` only in that folder; components at plugin root. |
-| Manifest and plugin name | Kebab-case permanent names, `displayName`, semver versions. `claude plugin validate --strict` passes for the marketplace and all three plugins. |
-| README and license | README at root and in each plugin; MIT `LICENSE` at root and in each plugin; `NOTICE` credits prior art. |
-| Files in the plugin folder | No binaries, no secrets, no `.env`; `.gitignore` excludes venvs and runtime state. |
-| What the plugin runs and connects to | Local Python only. Network: only the onboarding fetcher, to sites the user names. No MCP servers, no hooks. |
-| Hooks, skills, commands, agents | Skills under `skills/<name>/SKILL.md`; scaffold skills set `disable-model-invocation: true`; agents are read-only (`Read, Grep, Glob, Bash`). No hooks. |
-| Security scan | No credential handling, no remote code download, no shell interpolation of external content. |
-| Behavior test | `pytest` suite; `claude plugin eval` suite: TODO before directory submission. |
-| `homepage` / `repository` fields | Set to the GitHub repo in all three plugin.json files. |
+**Yuri Kaminski.** 15 years running paid media for 100+ companies. I build, validate, then teach, in that order. This skill is how I actually diagnose accounts, packaged so Claude can do it with you.
 
-## Credits
+[![Follow on LinkedIn](https://img.shields.io/badge/Follow%20on%20LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yuri-kaminski/)
 
-See `NOTICE`. Concepts studied from AgriciDaniel/claude-ads, irinabuht12-oss/marketing-skills and ivangfalco/ads-skills; reimplemented, nothing copied.
+<br clear="left">
 
-## License
+---
 
-MIT
+<p align="center">
+  <b>Found it useful? <a href="https://github.com/yurikaminski/ultimate-google-ads-skills/stargazers">Star the repo ⭐</a> and share it with the person who manages your ads.</b>
+</p>
+
+<sub>Credits: concepts studied from AgriciDaniel/claude-ads, irinabuht12-oss/marketing-skills and ivangfalco/ads-skills, reimplemented from scratch (see [NOTICE](NOTICE)). Directory submission notes: [docs/SUBMISSION-CHECKLIST.md](docs/SUBMISSION-CHECKLIST.md). License: [MIT](LICENSE).</sub>

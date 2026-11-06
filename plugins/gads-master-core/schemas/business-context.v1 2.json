@@ -1,0 +1,1066 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "business-context.v1",
+  "title": "business-context.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "business-context.v1"
+    },
+    "account_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]{1,40}$"
+    },
+    "last_reviewed": {
+      "type": "string",
+      "format": "date"
+    },
+    "fields": {
+      "type": "object",
+      "properties": {
+        "business_model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "ecommerce",
+                "saas_plg",
+                "saas_sales_led",
+                "saas_hybrid",
+                "app",
+                "marketplace",
+                "lead_gen",
+                "local",
+                "other",
+                null
+              ]
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "buyer_type": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "b2b",
+                "b2c",
+                "b2b2c",
+                null
+              ]
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "vertical": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 80
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "primary_offer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 120
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "price_point": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "properties": {
+                "metric": {
+                  "enum": [
+                    "aov",
+                    "acv",
+                    "mrr",
+                    "arpu",
+                    "one_time",
+                    "unknown"
+                  ]
+                },
+                "range": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  },
+                  "maxItems": 2
+                },
+                "currency": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "pattern": "^[A-Z]{3}$"
+                }
+              }
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "markets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "language": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "currency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "priority": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "sales_motion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "self_serve",
+                "sales_assisted",
+                "hybrid",
+                "retail",
+                "unknown",
+                null
+              ]
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "sales_cycle_days": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "conversion_path": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "enum": [
+                  "trial",
+                  "demo",
+                  "signup",
+                  "contact_form",
+                  "checkout",
+                  "app_install",
+                  "phone",
+                  "chat",
+                  "quote",
+                  "booking",
+                  "newsletter"
+                ]
+              }
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "seasonality": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 120
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "competitors": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "object",
+                "required": [
+                  "domain"
+                ],
+                "properties": {
+                  "domain": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9.-]+\\.[a-z]{2,}$"
+                  },
+                  "positioning": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 120
+                  },
+                  "evidence_type": {
+                    "enum": [
+                      "reported"
+                    ]
+                  }
+                }
+              }
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "brand_strength": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "strong",
+                "moderate",
+                "weak",
+                "unknown",
+                null
+              ]
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "tracking_maturity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "none",
+                "basic",
+                "conversions_imported",
+                "enhanced_conversions",
+                "oci_crm_linked",
+                "unknown",
+                null
+              ]
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "goal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "enum": [
+                "growth",
+                "efficiency",
+                "profit",
+                null
+              ]
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "owner_hypothesis_constraint": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "maxLength": 160
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "regulatory_flags": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string",
+                "maxLength": 60
+              }
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        },
+        "do_not_touch": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "source",
+            "confidence",
+            "evidence",
+            "captured_at"
+          ],
+          "properties": {
+            "value": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string",
+                "maxLength": 120
+              }
+            },
+            "source": {
+              "enum": [
+                "user",
+                "inferred",
+                "account_data",
+                "unknown"
+              ]
+            },
+            "confidence": {
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "maxLength": 300
+              }
+            },
+            "captured_at": {
+              "type": "string",
+              "format": "date"
+            },
+            "ttl_days": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 1
+            }
+          }
+        }
+      },
+      "required": [
+        "business_model",
+        "buyer_type",
+        "vertical",
+        "primary_offer",
+        "price_point",
+        "markets",
+        "sales_motion",
+        "sales_cycle_days",
+        "conversion_path",
+        "seasonality",
+        "competitors",
+        "brand_strength",
+        "tracking_maturity",
+        "goal",
+        "owner_hypothesis_constraint",
+        "regulatory_flags",
+        "do_not_touch"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema",
+    "account_id",
+    "last_reviewed",
+    "fields"
+  ],
+  "additionalProperties": false
+}

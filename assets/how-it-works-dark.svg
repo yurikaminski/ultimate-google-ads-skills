@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="350" viewBox="0 0 1280 350"><rect width="1280" height="350" fill="#0F172A"/><rect x="40" y="40" width="275" height="220" rx="14" fill="#1E293B"/>
+<circle cx="84" cy="88" r="24" fill="#F6F1E9"/>
+<text x="84" y="96" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1E293B" text-anchor="middle">1</text>
+<text x="64" y="160" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#F6F1E9">Onboard</text>
+<text x="64" y="200" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">Reads your site and competitors.</text>
+<text x="64" y="225" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">Asks only what it can't deduce.</text><path d="M323 150 l14 0 m-6 -7 l7 7 l-7 7" stroke="#F6F1E9" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="345" y="40" width="275" height="220" rx="14" fill="#1E293B"/>
+<circle cx="389" cy="88" r="24" fill="#E8540C"/>
+<text x="389" y="96" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="369" y="160" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#F6F1E9">Diagnose</text>
+<text x="369" y="200" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">Queue/starvation test (S16)</text>
+<text x="369" y="225" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">finds ONE constraint, with CIs.</text><path d="M628 150 l14 0 m-6 -7 l7 7 l-7 7" stroke="#F6F1E9" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="650" y="40" width="275" height="220" rx="14" fill="#1E293B"/>
+<circle cx="694" cy="88" r="24" fill="#F6F1E9"/>
+<text x="694" y="96" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1E293B" text-anchor="middle">3</text>
+<text x="674" y="160" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#F6F1E9">Exploit</text>
+<text x="674" y="200" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">Max 3 zero-spend actions.</text>
+<text x="674" y="225" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">Everything else: parking lot.</text><path d="M933 150 l14 0 m-6 -7 l7 7 l-7 7" stroke="#F6F1E9" stroke-width="3" fill="none" stroke-linecap="round"/><rect x="955" y="40" width="275" height="220" rx="14" fill="#1E293B"/>
+<circle cx="999" cy="88" r="24" fill="#F6F1E9"/>
+<text x="999" y="96" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#1E293B" text-anchor="middle">4</text>
+<text x="979" y="160" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#F6F1E9">Measure</text>
+<text x="979" y="200" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">Frozen windows, local memory,</text>
+<text x="979" y="225" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="17" fill="#9CA3AF">close the loop, find the next one.</text><path d="M1180 270 C1180 320 120 320 120 270" stroke="#9CA3AF" stroke-width="2.5" stroke-dasharray="6 8" fill="none"/><text x="640" y="336" font-family="'Space Grotesk', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" fill="#9CA3AF" text-anchor="middle">repeat: when the constraint moves, baselines reset</text></svg>

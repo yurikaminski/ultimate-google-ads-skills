@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "constraint-brief.v1",
+  "title": "constraint-brief.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "constraint-brief.v1"
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "playbook": {
+      "type": "string"
+    },
+    "warn_first": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gate0": {
+      "type": "array",
+      "items": {
+        "$ref": "finding.v1.json"
+      }
+    },
+    "constraint": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "link",
+        "kind",
+        "evidence",
+        "confidence",
+        "stats_ids"
+      ],
+      "properties": {
+        "link": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "volume",
+            "conversion"
+          ]
+        },
+        "toc_link": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "stats_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "constraint_found",
+        "no_constraint_at_target",
+        "unknown",
+        "blocked_gate0"
+      ]
+    },
+    "runner_up": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "falsifier": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "disambiguating_test": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "exploit": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action",
+          "expected_delta",
+          "stats_ids",
+          "window_days",
+          "rollback"
+        ],
+        "properties": {
+          "action": {
+            "type": "string"
+          },
+          "expected_delta": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "value": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "evidence_type": {
+                "enum": [
+                  "observed",
+                  "reported",
+                  "estimated"
+                ]
+              }
+            }
+          },
+          "stats_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+            },
+            "minItems": 1
+          },
+          "window_days": {
+            "type": "number"
+          },
+          "rollback": {
+            "type": "string"
+          }
+        }
+      },
+      "maxItems": 3
+    },
+    "subordinate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parking_lot": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 160
+      }
+    },
+    "elevate": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "option": {
+            "type": "string"
+          },
+          "gated": {
+            "const": true
+          }
+        }
+      }
+    },
+    "instruments": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "owner_hypothesis": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "next_review": {
+      "type": "string",
+      "format": "date"
+    },
+    "stats_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+      }
+    }
+  },
+  "required": [
+    "schema",
+    "account_id",
+    "created_at",
+    "playbook",
+    "warn_first",
+    "gate0",
+    "constraint",
+    "status",
+    "runner_up",
+    "exploit",
+    "subordinate",
+    "parking_lot",
+    "elevate",
+    "next_review",
+    "stats_ids"
+  ],
+  "additionalProperties": false
+}

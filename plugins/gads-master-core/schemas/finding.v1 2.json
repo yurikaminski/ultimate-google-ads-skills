@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "finding.v1",
+  "title": "finding.v1",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "finding.v1"
+    },
+    "id": {
+      "type": "string"
+    },
+    "control_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "pass",
+        "fail",
+        "unknown",
+        "not_applicable"
+      ]
+    },
+    "evidence_type": {
+      "enum": [
+        "observed",
+        "reported",
+        "estimated"
+      ]
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "stats_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S(0[1-9]|1[0-6])-[0-9a-f]{10}$"
+      }
+    },
+    "observation": {
+      "type": "string"
+    },
+    "diagnosis": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recommendation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "indicative": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema",
+    "id",
+    "status",
+    "evidence_type",
+    "evidence_refs",
+    "stats_ids",
+    "observation",
+    "confidence",
+    "indicative"
+  ],
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "pass",
+              "fail"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "evidence_refs": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
+}
